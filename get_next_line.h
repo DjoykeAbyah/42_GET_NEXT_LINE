@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:23 by dreijans      #+#    #+#                 */
-/*   Updated: 2022/12/23 21:01:42 by dreijans      ########   odam.nl         */
+/*   Updated: 2022/12/30 17:33:14 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,19 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stddef.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 3
+#  define BUFFER_SIZE 4
 # endif
 
 char		*ft_readfile(int fd);
-size_t		ft_find_newline(char *s);
+size_t		ft_find_newline(char *str);
+size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t		ft_strlen(const char *s);
+size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
+char		*ft_strjoin(char *s1, char const *s2);
+char		*ft_strdup(const char *s1);
+void		*ft_memcpy(void *dst, const void *src, size_t n);
 
 #endif
