@@ -6,11 +6,62 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:14 by dreijans      #+#    #+#                 */
-/*   Updated: 2022/12/30 17:34:12 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/03 19:57:50 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char		*new_str;
+	size_t		strlen;
+
+	strlen = ft_strlen((char *)s);
+	if (start >= strlen)
+		len = 0;
+	else if (len > strlen - start)
+		len = strlen - start;
+	new_str = (char *)malloc((sizeof(char) * (len + 1)));
+	if (new_str == NULL)
+		return (NULL);
+	if (strlen == 0 || len == 0)
+		new_str[0] = 0;
+	else
+		ft_strlcpy(new_str, &s[start], len + 1);
+	return (new_str);
+}
+
+// char	*ft_strchr(const char *s, int c)
+// {
+// 	char	*d;
+
+// 	d = (char *)s;
+// 	while (*d != '\0')
+// 	{
+// 		if (*d == (char) c)
+// 		{
+// 			return (d);
+// 		}
+// 		d++;
+// 	}
+// 	if ((char) c == '\0')
+// 	{
+// 		return (d);
+// 	}	
+// 	return (NULL);
+// }
+
 
 /*copy and concatenate strings */
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
@@ -42,12 +93,11 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (dst_len + src_len);
 }
 
-/*Allocates (with malloc(3)) and returns a new
-string, which is the result of the concatenation
-of ’s1’ and ’s2’.
-constant is just for reading but i want to edit s1
-needs to be freed because each time malloc used string get's new pointer when altered*/
-char	*ft_strjoin(char *s1, char const *s2)
+// /*Allocates (with malloc(3)) and returns a new
+// string, which is the result of the concatenation
+// of ’s1’ and ’s2’.
+// constant is just for reading but i want to edit s1*/
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char		*new_str;
 	size_t		len;
@@ -58,27 +108,32 @@ char	*ft_strjoin(char *s1, char const *s2)
 	{
 		ft_strlcpy(new_str, s1, (ft_strlen(s1) + 1));
 		ft_strlcat(new_str, s2, len);
-		free (s1);
 		return (new_str);
 	}
 	return (NULL);
 }
 
+/*
+function allocates sufficient memory 
+1)for a copy of the string s1,
+2)does the copy 
+3)and returns a pointer to it.
+*/
 char	*ft_strdup(const char *s1)
 {
 	size_t	len;
-	void	*s2;
+	char	*s2;
 
 	len = ft_strlen(s1)+1;
 	s2 = malloc(len * sizeof (char));
 	if (s2 == NULL)
-	{
 		return (NULL);
-	}
 	ft_memcpy(s2, (void *)s1, len);
+	s2[len - 1] = '\0';
 	return (s2);
 }
 
+/* copies n bytes from memory area to dst */
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	char	*ptrd;
@@ -89,9 +144,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	ptrd = (char *)dst;
 	ptrs = (char *)src;
 	if (ptrd == '\0' && ptrs == '\0')
-	{
 		return (NULL);
-	}
 	while (i < n)
 	{
 		*ptrd = *ptrs;
