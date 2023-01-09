@@ -6,27 +6,27 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:19 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/03 19:56:45 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/09 12:38:41 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 /*finds newline char*/
-size_t	ft_find_newline(char *str)
+ssize_t	ft_find_newline(char *str)
 {
-	size_t			i;
+	int			i;
 
 	i = 0;
 	if (!str)
-		return (0);
+		return (-1);
 	while (str[i] != '\0')
 	{
 		if (str[i] == '\n')
 			return (i);
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
 /* reads the file and puts it in a string
@@ -34,63 +34,59 @@ i = where i found /n on which index */
 char	*get_next_line(int fd)
 {
 	char				buffer[BUFFER_SIZE + 1];
+	// char				*buffer;
 	static char			*temp_string;
 	char				*new_string;
 	char				*free_string;
-	size_t				byte_read;
-	size_t				i;
-	size_t				len;
+	ssize_t				byte_read;
+	ssize_t				i;
 
-	len = 0;
 	i = 0;
-	byte_read = 1;
+	free_string = NULL;
 	new_string = NULL;
-	if (fd < 0 && BUFFER_SIZE <= 0)
+	temp_string = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	while (byte_read != 0 && !ft_find_newline(temp_string))
+	while (ft_find_newline(temp_string) < 0)
 	{
 		byte_read = read (fd, buffer, BUFFER_SIZE);
+		if (byte_read < 0)
+			return (NULL);
 		buffer[byte_read] = '\0';
+		if (byte_read == 0)
+			return (temp_string);
 		if (temp_string == NULL)
-		{
-			temp_string = ft_strdup(buffer); // or ft_substr?
-		}
+			temp_string = ft_strdup(buffer);
 		else
 		{
-			free_string = temp_string;
-			temp_string = ft_strjoin(free_string, buffer); // dont put it to NULL because joining
+			temp_string = ft_strjoin(free_string, buffer);
 			free(free_string);
 		}
 	}
-	while (temp_string[i] != '\0' && temp_string[i] != '\n')
+	while (temp_string != NULL && temp_string[i] != '\0')
 	{
-		i++;
-		int j = ft_find_newline(temp_string);
-		if (j == 0)
+		int found_nl = ft_find_newline(temp_string);
+		if (found_nl == -1)
 			{
 				free_string = ft_strdup(temp_string);
 				free (temp_string);
-				temp_string = NULL;	
+				temp_string = NULL;
 				return (free_string);
 			}
-		free_string = temp_string;
-		new_string = ft_substr(temp_string, 0, j + 1); // stores with \n
-		temp_string = ft_substr(free_string, j + 1, 6); // updates temp_string from \n
-		free (free_string);
-		if (j != 0)// need to stop when newline is found, else it overwrites new_string with substring
-			break ;
+		else
+		{
+			free_string = temp_string;
+			new_string = ft_substr(temp_string, 0, ft_find_newline(temp_string) + 1); // stores with \n
+			temp_string = ft_substr(free_string, ft_find_newline(temp_string) + 1, ft_strlen(free_string)); // updates temp_string from \n
+			// malloc fail check.
+			free (free_string);
+		}
+			if (ft_find_newline(temp_string) != 0)// need to stop when newline is found, else it overwrites new_string with substring
+				break ;
+		i++;
 	}
-	return (new_string); // null terminated string 
+	return (new_string);
 }
-
-	//static int			b = 0;
-	//printf("-------------------------------%d----------------------------\n", b++);
-	
-	// printf("byte read=%zu\n", byte_read);
-	// printf("j=%d\n", j);
-	// printf("new_string=%s\n", new_string);
-	//printf("buffer=%s\n", buffer);
-	// printf("temp_string=%s\n", temp_string);
 
 /*
 Function name: 		get_next_line

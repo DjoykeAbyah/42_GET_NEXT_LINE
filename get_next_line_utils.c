@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:14 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/03 19:57:50 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/06 20:24:49 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		len = 0;
 	else if (len > strlen - start)
 		len = strlen - start;
-	new_str = (char *)malloc((sizeof(char) * (len + 1)));
+	if (len == 0)
+		return (NULL);
+	new_str = malloc(sizeof(char) * (len + 1));
 	if (new_str == NULL)
 		return (NULL);
 	if (strlen == 0 || len == 0)
@@ -41,27 +43,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		ft_strlcpy(new_str, &s[start], len + 1);
 	return (new_str);
 }
-
-// char	*ft_strchr(const char *s, int c)
-// {
-// 	char	*d;
-
-// 	d = (char *)s;
-// 	while (*d != '\0')
-// 	{
-// 		if (*d == (char) c)
-// 		{
-// 			return (d);
-// 		}
-// 		d++;
-// 	}
-// 	if ((char) c == '\0')
-// 	{
-// 		return (d);
-// 	}	
-// 	return (NULL);
-// }
-
 
 /*copy and concatenate strings */
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
@@ -75,7 +56,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		i++;
 	}
 	if (i < dstsize)
-	dst[i] = '\0';
+		dst[i] = '\0';
 	return (ft_strlen(src));
 }
 
