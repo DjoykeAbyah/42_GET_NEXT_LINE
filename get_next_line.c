@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:19 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/09 12:38:41 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/09 15:58:48 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,9 @@ i = where i found /n on which index */
 char	*get_next_line(int fd)
 {
 	char				buffer[BUFFER_SIZE + 1];
-	// char				*buffer;
 	static char			*temp_string;
 	char				*new_string;
 	char				*free_string;
-	ssize_t				byte_read;
 	ssize_t				i;
 
 	i = 0;
@@ -49,11 +47,11 @@ char	*get_next_line(int fd)
 		return (NULL);
 	while (ft_find_newline(temp_string) < 0)
 	{
-		byte_read = read (fd, buffer, BUFFER_SIZE);
-		if (byte_read < 0)
+		i = read (fd, buffer, BUFFER_SIZE);
+		if (i < 0)
 			return (NULL);
-		buffer[byte_read] = '\0';
-		if (byte_read == 0)
+		buffer[i] = '\0';
+		if (i == 0)
 			return (temp_string);
 		if (temp_string == NULL)
 			temp_string = ft_strdup(buffer);
@@ -63,6 +61,7 @@ char	*get_next_line(int fd)
 			free(free_string);
 		}
 	}
+	i = 0;
 	while (temp_string != NULL && temp_string[i] != '\0')
 	{
 		int found_nl = ft_find_newline(temp_string);
@@ -76,10 +75,12 @@ char	*get_next_line(int fd)
 		else
 		{
 			free_string = temp_string;
-			new_string = ft_substr(temp_string, 0, ft_find_newline(temp_string) + 1); // stores with \n
+			new_string = ft_substr(temp_string, 0, ft_find_newline(temp_string) + 1); // stores with \n make into seperate functiion
 			temp_string = ft_substr(free_string, ft_find_newline(temp_string) + 1, ft_strlen(free_string)); // updates temp_string from \n
 			// malloc fail check.
+			// make into seperate function
 			free (free_string);
+			free_string = NULL;
 		}
 			if (ft_find_newline(temp_string) != 0)// need to stop when newline is found, else it overwrites new_string with substring
 				break ;

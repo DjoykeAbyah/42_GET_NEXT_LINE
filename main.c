@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:26 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/09 11:44:43 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/09 15:24:17 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,34 @@ int	main(void)
 	system("leaks a.out");
 	return (0);
 }
+
+// int main()
+// {
+// 	char *str;
+// 	char *tmp;
+	
+// 	str = malloc(1000);
+// 	tmp = str;
+// 	str = malloc(1000);
+// 	free(tmp);
+// 	tmp = NULL;
+// 	free(tmp);
+// 	return (system("leaks -q a.out"), 0);
+// }
+
+// int main()
+// {
+// 	int fd;
+// 	char *str;
+
+// 	fd = open ("test.txt", O_RDONLY);
+// 	read (fd, str, 5);
+// 	printf("%s\n", str);
+// 	read (fd, str, 2);
+// 	printf("%s\n", str);
+// 	//overschrijft eerste 2 krijgt nog steeds laastte 3 van vorige read te zien.
+// 	//bzero gebruiken?
+// }
 
 // int	main(void)
 // {
