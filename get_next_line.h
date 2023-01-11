@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:23 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/11 12:51:24 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/11 17:47:03 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stddef.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 3
+#  define BUFFER_SIZE 100
 # endif
 
 char			*get_next_line(int fd);

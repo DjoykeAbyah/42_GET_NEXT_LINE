@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:26 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/11 15:43:52 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/11 18:36:08 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@
 // 		printf("%s\n", line);
 // 		free (line);
 // 	}
-// 	free(line);
+// 	free (line);
 // 	close (fd);
 // 	return (0);
 // }
 
-// int main(void)
+// int	main(void)
 // {
 // 	main3();
 // 	system("leaks a.out");
@@ -39,8 +39,8 @@
 
 int	main(void)
 {
-	int		fd;
-	char 	*line;
+	int			fd;
+	char		*line;
 
 	fd = open("test.txt", O_RDONLY);
 	for (int i = 0; i < 6; i++)
@@ -50,7 +50,7 @@ int	main(void)
 		free (line);
 	}
 	close (fd);
-	//system("leaks a.out");
+	system("leaks a.out");
 	return (0);
 }
 
@@ -58,7 +58,7 @@ int	main(void)
 // {
 // 	char *str;
 // 	char *tmp;
-	
+
 // 	str = malloc(1000);
 // 	tmp = str;
 // 	str = malloc(1000);
