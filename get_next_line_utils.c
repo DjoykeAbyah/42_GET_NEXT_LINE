@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:14 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/09 17:36:12 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/11 10:56:22 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,26 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
+	if (s == NULL)
+		return (0);
 	while (s[i] != '\0')
 		i++;
 	return (i);
+}
+
+char	*ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+
+	i = 0;
+	while (src[i] != '\0' && (i + 1) < dstsize)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (i < dstsize)
+	dst[i] = '\0';
+	return (dst);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -44,52 +61,34 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (new_str);
 }
 
-/*concatenates two strings*/
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
-{
-	size_t	dst_len;
-	size_t	src_len;
-
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
-	if (dstsize < dst_len)
-		return (dstsize + src_len);
-	ft_strlcpy(dst + dst_len, src, dstsize - dst_len);
-	return (dst_len + src_len);
-}
-
-// /*Allocates (with malloc(3)) and returns a new
-// string, which is the result of the concatenation
-// of ’s1’ and ’s2’.
-// constant is just for reading but i want to edit s1*/
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_copy_join(char *s1, char *s2)
 {
 	char		*new_str;
 	size_t		len;
 	size_t		i;
+	size_t		j;
 
+	i = 0;
+	j = 0;
+	if (s1 == NULL && s2 == NULL)
+		return (NULL);
 	len = (ft_strlen(s1) + ft_strlen(s2)) + 1;
 	new_str = (char *)malloc(sizeof (char) * len);
 	if (new_str == NULL)
 		return (NULL);
-	while (s1[i] != '\0' && (i + 1) < len)
+	if (s1 == NULL)
 	{
-		new_str[i] = s1[i];
-		i++;
+		ft_strlcpy(new_str, s2, ft_strlen(s2) + 1);
+		return (new_str);
 	}
-	// if (i < len)
-	// 	new_str[i]= '\0';
-
-	// ft_strlcat(new_str, s2, len);
+	while (s1 != NULL && s1[i] != '\0')
+		new_str[j++] = s1[i++];
+	i = 0;
+	while (s2 != NULL && s2[i] != '\0')
+		new_str[j++] = s2[i++];
+	new_str[j] = '\0';
 	return (new_str);
 }
-
-/*
-function allocates sufficient memory 
-1)for a copy of the string s1,
-2)does the copy 
-3)and returns a pointer to it.
-*/
 
 char	*ft_strdup(char *s1)
 {
@@ -97,8 +96,7 @@ char	*ft_strdup(char *s1)
 	char	*s2;
 	size_t	i;
 
-	if (s1 != NULL)
-		len = ft_strlen(s1) + 1;
+	len = ft_strlen(s1) + 1;
 	s2 = malloc(len * sizeof (char));
 	if (s2 == NULL)
 		return (NULL);
@@ -107,50 +105,13 @@ char	*ft_strdup(char *s1)
 		return (NULL);
 	while (i < len)
 	{
-		s1[i] = s2[i];
+		s2[i] = s1[i];
 		i++;
 	}
-	s2[len - 1] = '\0';
+	//s2[len - 1] = '\0';
 	return (s2);
 }
 
-// /* copies n bytes from memory area to dst */
-// void	*ft_memcpy(void *dst, const void *src, size_t n)
-// {
-// 	char	*ptrd;
-// 	char	*ptrs;
-// 	size_t	i;
-
-// 	i = 0;
-// 	ptrd = (char *)dst;
-// 	ptrs = (char *)src;
-// 	if (ptrd == '\0' && ptrs == '\0')
-// 		return (NULL);
-// 	while (i < n)
-// 	{
-// 		*ptrd = *ptrs;
-// 		ptrd++;
-// 		ptrs++;
-// 		i++;
-// 	}
-// 	return (dst);
-// }
-
-// /*copy and concatenate strings */
-// size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (src[i] != '\0' && (i + 1) < dstsize)
-// 	{
-// 		dst[i] = src[i];
-// 		i++;
-// 	}
-// 	if (i < dstsize)
-// 		dst[i] = '\0';
-// 	return (ft_strlen(src));
-// }
 /*
 Function name: 		get_next_line
 
@@ -170,3 +131,68 @@ External functs: 	read, malloc, free
 Description: 		Write a function that returns a line read from a
 					file descriptor
 */
+// char	*ft_strjoin(char const *s1, char const *s2)
+// {
+// 	char		*new_str;
+// 	size_t		len;
+
+// 	len = (ft_strlen(s1) + ft_strlen(s2)) + 1;
+// 	new_str = (char *)malloc(sizeof (char) * len);
+// 	if (new_str != '\0')
+// 	{
+// 		ft_strlcpy(new_str, s1, (ft_strlen(s1) + 1));
+// 		ft_strlcat(new_str, s2, len);
+// 		return (new_str);
+// 	}
+// 	return (NULL);
+// }
+
+// size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+// {
+// 	size_t	dst_len;
+// 	size_t	src_len;
+
+// 	dst_len = ft_strlen(dst);
+// 	src_len = ft_strlen(src);
+// 	if (dstsize < dst_len)
+// 		return (dstsize + src_len);
+// 	ft_strlcpy(dst + dst_len, src, dstsize - dst_len);
+// 	return (dst_len + src_len);
+// }
+// void	*ft_memcpy(void *dst, const void *src, size_t n)
+// {
+// 	char	*ptrd;
+// 	char	*ptrs;
+// 	size_t	i;
+
+// 	i = 0;
+// 	ptrd = (char *)dst;
+// 	ptrs = (char *)src;
+// 	if (ptrd == '\0' && ptrs == '\0')
+// 	{
+// 		return (NULL);
+// 	}
+// 	while (i < n)
+// 	{
+// 		*ptrd = *ptrs;
+// 		ptrd++;
+// 		ptrs++;
+// 		i++;
+// 	}
+// 	return (dst);
+// }
+
+// char	*ft_strdup(const char *s1)
+// {
+// 	size_t	len;
+// 	void	*s2;
+
+// 	len = ft_strlen(s1)+1;
+// 	s2 = malloc(len * sizeof (char));
+// 	if (s2 == NULL)
+// 	{
+// 		return (NULL);
+// 	}
+// 	ft_memcpy(s2, (void *)s1, len);
+// 	return (s2);
+// }

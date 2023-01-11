@@ -6,13 +6,13 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:26 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/09 15:24:17 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/11 15:43:52 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// int	main(void)
+// int	main3()
 // {
 // 	int		fd;
 // 	char	*line;
@@ -50,7 +50,7 @@ int	main(void)
 		free (line);
 	}
 	close (fd);
-	system("leaks a.out");
+	//system("leaks a.out");
 	return (0);
 }
 
