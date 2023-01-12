@@ -6,30 +6,31 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:26 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/11 18:36:08 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/12 16:23:32 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// int	main3()
-// {
-// 	int		fd;
-// 	char	*line;
+int	main()
+{
+	int		fd;
+	char	*line;
 
-// 	fd = open("test.txt", O_RDONLY);
-// 	while (1)
-// 	{
-// 		line = get_next_line(fd);
-// 		if (line == NULL)
-// 			break ;
-// 		printf("%s\n", line);
-// 		free (line);
-// 	}
-// 	free (line);
-// 	close (fd);
-// 	return (0);
-// }
+	fd = open("test.txt", O_RDONLY);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
+		printf("%s", line);
+		free (line);
+	}
+	free (line);
+	close (fd);
+	system("leaks a.out");
+	return (0);
+}
 
 // int	main(void)
 // {
@@ -37,22 +38,22 @@
 // 	system("leaks a.out");
 // }
 
-int	main(void)
-{
-	int			fd;
-	char		*line;
+// int	main(void)
+// {
+// 	int			fd;
+// 	char		*line;
 
-	fd = open("test.txt", O_RDONLY);
-	for (int i = 0; i < 6; i++)
-	{
-		line = get_next_line(fd);
-		printf("%s", line);
-		free (line);
-	}
-	close (fd);
-	system("leaks a.out");
-	return (0);
-}
+// 	fd = open("test.txt", O_RDONLY);
+// 	for (int i = 0; i < 6; i++)
+// 	{
+// 		line = get_next_line(fd);
+// 		printf("%s", line);
+// 		free (line);
+// 	}
+// 	close (fd);
+// 	system("leaks a.out");
+// 	return (0);
+// }
 
 // int main()
 // {
