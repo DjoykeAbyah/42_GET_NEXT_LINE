@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:23 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/13 16:15:28 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/13 20:06:08 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,12 @@
 # endif
 
 char			*get_next_line(int fd);
-char			*ft_save(char *str);
 ssize_t			ft_find_newline(char *str);
+char			*ft_read_line(int fd, char *buffer, char *temp_buffer);
+char			*ft_save(char *str);
 size_t			ft_strlen(const char *s);
-char			*ft_copy_join(char *s1, char *s2);
-char			*ft_strdup(char *s1);
-char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strlcpy(char *dst, const char *src, size_t dstsize);
-void			ft_bzero(char *str);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+char			*ft_copy_join(char *s1, char *s2);
 
 #endif

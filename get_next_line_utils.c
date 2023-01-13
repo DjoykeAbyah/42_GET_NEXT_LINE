@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:14 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/13 16:18:52 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/13 20:26:58 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,68 +109,3 @@ External functs: 	read, malloc, free
 Description: 		Write a function that returns a line read from a
 					file descriptor
 */
-// char	*ft_strjoin(char const *s1, char const *s2)
-// {
-// 	char		*new_str;
-// 	size_t		len;
-
-// 	len = (ft_strlen(s1) + ft_strlen(s2)) + 1;
-// 	new_str = (char *)malloc(sizeof (char) * len);
-// 	if (new_str != '\0')
-// 	{
-// 		ft_strlcpy(new_str, s1, (ft_strlen(s1) + 1));
-// 		ft_strlcat(new_str, s2, len);
-// 		return (new_str);
-// 	}
-// 	return (NULL);
-// }
-
-// size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
-// {
-// 	size_t	dst_len;
-// 	size_t	src_len;
-
-// 	dst_len = ft_strlen(dst);
-// 	src_len = ft_strlen(src);
-// 	if (dstsize < dst_len)
-// 		return (dstsize + src_len);
-// 	ft_strlcpy(dst + dst_len, src, dstsize - dst_len);
-// 	return (dst_len + src_len);
-// }
-// void	*ft_memcpy(void *dst, const void *src, size_t n)
-// {
-// 	char	*ptrd;
-// 	char	*ptrs;
-// 	size_t	i;
-
-// 	i = 0;
-// 	ptrd = (char *)dst;
-// 	ptrs = (char *)src;
-// 	if (ptrd == '\0' && ptrs == '\0')
-// 	{
-// 		return (NULL);
-// 	}
-// 	while (i < n)
-// 	{
-// 		*ptrd = *ptrs;
-// 		ptrd++;
-// 		ptrs++;
-// 		i++;
-// 	}
-// 	return (dst);
-// }
-
-// char	*ft_strdup(const char *s1)
-// {
-// 	size_t	len;
-// 	void	*s2;
-
-// 	len = ft_strlen(s1)+1;
-// 	s2 = malloc(len * sizeof (char));
-// 	if (s2 == NULL)
-// 	{
-// 		return (NULL);
-// 	}
-// 	ft_memcpy(s2, (void *)s1, len);
-// 	return (s2);
-// }

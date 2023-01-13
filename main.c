@@ -6,13 +6,13 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:26 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/13 16:18:15 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/13 20:02:09 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	main()
+int	main(void)
 {
 	int		fd;
 	char	*line;

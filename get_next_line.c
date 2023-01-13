@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 11:35:31 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/13 19:58:12 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/13 20:39:45 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ char	*ft_read_line(int fd, char *buffer, char *temp_buffer)
 		if (byte_read == 0)
 			return (buffer);
 		if (byte_read == -1)
+		{
+			temp_buffer[0] = '\0';
+			free (buffer);
 			return (0);
+		}
 		free_string = buffer;
 		buffer = ft_copy_join(buffer, temp_buffer);
 		free (free_string);
@@ -87,11 +91,9 @@ char	*get_next_line(int fd)
 	i = ft_find_newline(temp_buffer);
 	ft_strlcpy(temp_buffer, &temp_buffer[i + 1], ft_strlen(&temp_buffer[i]));
 	if (temp_buffer[0] == '\0' && buffer[0] == '\0')
+	{
+		free (buffer);
 		return (NULL);
+	}
 	return (buffer);
 }
-
-	// printf("------------buffer = %s\n", buffer);
-	// printf("------------temp_buffer = %s\n", temp_buffer);
-	// printf("------------buffer before = %s\n", buffer);
-	// printf("---------");
