@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:26 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/13 20:02:09 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/13 23:34:57 by djoyke        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	main(void)
 	while (1)
 	{
 		line = get_next_line(fd);
+		printf("%s", line);
 		if (line == NULL)
 			break ;
-		printf("%s", line);
 		free (line);
 	}
 	free (line);
