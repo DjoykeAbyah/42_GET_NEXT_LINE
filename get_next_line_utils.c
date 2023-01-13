@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:14 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/12 16:20:28 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/13 16:18:52 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,28 +88,6 @@ char	*ft_copy_join(char *s1, char *s2)
 		new_str[j++] = s2[i++];
 	new_str[j] = '\0';
 	return (new_str);
-}
-
-char	*ft_strdup(char *s1)
-{
-	size_t	len;
-	char	*s2;
-	size_t	i;
-
-	len = ft_strlen(s1) + 1;
-	s2 = malloc(len * sizeof (char));
-	if (s2 == NULL)
-		return (NULL);
-	i = 0;
-	if (s1[i] == '\0' && s2[i] == '\0')
-		return (NULL);
-	while (i < len)
-	{
-		s2[i] = s1[i];
-		i++;
-	}
-	//s2[len - 1] = '\0';
-	return (s2);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:23 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/12 16:10:33 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/13 16:15:28 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stddef.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 100000
 # endif
 
 char			*get_next_line(int fd);
@@ -31,6 +31,6 @@ char			*ft_copy_join(char *s1, char *s2);
 char			*ft_strdup(char *s1);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strlcpy(char *dst, const char *src, size_t dstsize);
-// ssize_t			ft_find_end(char *str);
+void			ft_bzero(char *str);
 
 #endif

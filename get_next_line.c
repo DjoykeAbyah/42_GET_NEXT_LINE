@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 11:35:31 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/12 16:18:49 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/13 19:58:12 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ ssize_t	ft_find_newline(char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		if (str[i] == '\n')
 			return (i);
@@ -30,14 +30,25 @@ ssize_t	ft_find_newline(char *str)
 
 char	*ft_read_line(int fd, char *buffer, char *temp_buffer)
 {
-	int	byte_read;
+	int		byte_read;
+	char	*free_string;
 
-	byte_read = read (fd, temp_buffer, BUFFER_SIZE);
-	if (byte_read == 0)
-		return (0);
-	if (byte_read == -1)
-		return (0);
-	buffer = ft_copy_join(buffer, temp_buffer);
+	while (ft_find_newline(temp_buffer) == -1)
+	{
+		if (buffer == NULL)
+			return (buffer);
+		byte_read = read (fd, temp_buffer, BUFFER_SIZE);
+		temp_buffer[byte_read] = '\0';
+		if (byte_read == 0)
+			return (buffer);
+		if (byte_read == -1)
+			return (0);
+		free_string = buffer;
+		buffer = ft_copy_join(buffer, temp_buffer);
+		free (free_string);
+		if (buffer == NULL)
+			return (NULL);
+	}
 	return (buffer);
 }
 
@@ -48,12 +59,13 @@ char	*ft_save(char *str)
 
 	new_str = NULL;
 	len = ft_find_newline(str);
-	if (ft_find_newline(str))
-		new_str = ft_substr(str, 0, len + 1);
+	if (len == -1)
+		return (str);
+	new_str = ft_substr(str, 0, len + 1);
+	free (str);
 	return (new_str);
 }
 
-//can alsnog buffer = malloc 1 doen hehehehe
 char	*get_next_line(int fd)
 {
 	static char		temp_buffer[BUFFER_SIZE + 1];
@@ -61,18 +73,25 @@ char	*get_next_line(int fd)
 	int				i;
 
 	buffer = NULL;
-	i = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = ft_copy_join(buffer, temp_buffer);
-	while (ft_find_newline(temp_buffer) == -1)
-	{
-		buffer = ft_read_line(fd, buffer, &temp_buffer[i]);
-		if (buffer == 0)
-			break ;
-	}
-	buffer = ft_save(&buffer[i]);
+	if (buffer == NULL)
+		return (NULL);
+	buffer = ft_read_line(fd, buffer, temp_buffer);
+	if (buffer == NULL)
+		return (NULL);
+	buffer = ft_save(buffer);
+	if (buffer == NULL)
+		return (NULL);
 	i = ft_find_newline(temp_buffer);
 	ft_strlcpy(temp_buffer, &temp_buffer[i + 1], ft_strlen(&temp_buffer[i]));
+	if (temp_buffer[0] == '\0' && buffer[0] == '\0')
+		return (NULL);
 	return (buffer);
 }
+
+	// printf("------------buffer = %s\n", buffer);
+	// printf("------------temp_buffer = %s\n", temp_buffer);
+	// printf("------------buffer before = %s\n", buffer);
+	// printf("---------");

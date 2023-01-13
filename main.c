@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:26 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/12 16:23:32 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/13 16:18:15 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ int	main()
 // 	char		*line;
 
 // 	fd = open("test.txt", O_RDONLY);
-// 	for (int i = 0; i < 6; i++)
+// 	for (int i = 0; i < 8; i++)
 // 	{
 // 		line = get_next_line(fd);
 // 		printf("%s", line);
 // 		free (line);
 // 	}
 // 	close (fd);
-// 	system("leaks a.out");
+// 	//system("leaks a.out");
 // 	return (0);
 // }
 
