@@ -6,29 +6,70 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:26 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/13 20:02:09 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/19 15:12:25 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+// int	main(void)
+// {
+// 	int		fd;
+// 	char	*line;
+
+// 	fd = open("test.txt", O_RDONLY);
+// 	while (1)
+// 	{
+// 		line = get_next_line(fd);
+// 		if (line == NULL)
+// 			break ;
+// 		printf("%s", line);
+// 		free (line);
+// 	}
+// 	free (line);
+// 	close (fd);
+// 	system("leaks a.out");
+// 	return (0);
+// }
+
 int	main(void)
 {
 	int		fd;
+	int		fd1;
+	int		fd2;
 	char	*line;
 
 	fd = open("test.txt", O_RDONLY);
-	while (1)
+	fd1 = open("test1.txt", O_RDONLY);
+	fd2 = open("test2.txt", O_RDONLY);
+	line = "\0";
+	while (line)
 	{
 		line = get_next_line(fd);
-		if (line == NULL)
-			break ;
 		printf("%s", line);
-		free (line);
+		if (line == NULL)
+			free(line);
 	}
-	free (line);
-	close (fd);
-	system("leaks a.out");
+	line = "\0";
+	while (line)
+	{
+		line = get_next_line(fd1);
+		printf("%s", line);
+		if (line == NULL)
+			free(line);
+	}
+	line = "\0";
+	while (line)
+	{
+		line = get_next_line(fd2);
+		printf("%s", line);
+		if (line == NULL)
+			free(line);
+	}
+	free(line);
+	close(fd);
+	close(fd1);
+	close(fd2);
 	return (0);
 }
 
