@@ -6,11 +6,12 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:26 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/20 14:15:01 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/20 18:17:00 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 // int	main(void)
 // {

@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:23 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/20 14:07:37 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/20 18:16:53 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <stddef.h>
 
 # ifndef BUFFER_SIZE
