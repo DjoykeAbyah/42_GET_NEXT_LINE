@@ -6,7 +6,7 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:14 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/13 20:26:58 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/23 16:53:13 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,23 +89,3 @@ char	*ft_copy_join(char *s1, char *s2)
 	new_str[j] = '\0';
 	return (new_str);
 }
-
-/*
-Function name: 		get_next_line
-
-Prototype: 			char *get_next_line(int fd);
-
-Turn in files : 	get_next_line.c, get_next_line_utils.c,
-					get_next_line.h
-
-Parameters: fd: 	The file descriptor to read from
-
-Return value: 		Read line: correct behavior
-					NULL: there is nothing else to read, or an error
-					occurred
-				
-External functs: 	read, malloc, free
-
-Description: 		Write a function that returns a line read from a
-					file descriptor
-*/

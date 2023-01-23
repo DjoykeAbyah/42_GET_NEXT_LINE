@@ -6,16 +6,12 @@
 /*   By: dreijans <dreijans@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/22 13:18:23 by dreijans      #+#    #+#                 */
-/*   Updated: 2023/01/18 18:29:37 by dreijans      ########   odam.nl         */
+/*   Updated: 2023/01/22 14:57:40 by dreijans      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
-
-# ifndef OPEN_MAX
-#  define OPEN_MAX
-# endif
 
 # include <unistd.h>
 # include <fcntl.h>
