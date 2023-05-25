@@ -2,9 +2,7 @@
 
 ## Description 📝
 
-Reads a line from a file descriptor (`fd`). 
-The goal was to create a function called `get_next_line` that returns a line read from the file descriptor, one line at a time.
-Understanding static variables was a good starting point. And global variables were not allowed.
+The goal was to create a function called `get_next_line` that returns a line read from the file descriptor (`fd`).
 
 ### Details 📋:
 
@@ -12,9 +10,9 @@ Understanding static variables was a good starting point. And global variables w
 - It should return the line that was read.
 - If there is nothing else to read or an error occurs, the function should return `NULL`.
 - The returned line should include the terminating `\n` character, except when the end of the file is reached and does not end with a `\n` character.
-- Ensure that your function works correctly when reading from both files and standard input.
+- Work correctly when reading from both files and standard input.
 
-Understanding static variables would be a good starting point.
+Understanding static variables was a goof starting point.
 Global variables are not allowed.
 
 ## Bonus Part 💯
