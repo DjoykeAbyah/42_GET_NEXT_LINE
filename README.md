@@ -12,7 +12,7 @@ The goal was to create a function called `get_next_line` that returns a line rea
 - The returned line should include the terminating `\n` character, except when the end of the file is reached and does not end with a `\n` character.
 - Work correctly when reading from both files and standard input.
 
-Understanding static variables was a goof starting point.
+Understanding static variables was a good starting point.
 Global variables are not allowed.
 
 ## Bonus Part 💯
