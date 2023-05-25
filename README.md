@@ -21,3 +21,12 @@ Here are the additional requirements:
 
 - Implement the `get_next_line` function using only one static variable.
 - The `get_next_line` function should be able to manage multiple file descriptors simultaneously.
+
+## Installation and Usage
+1. Clone the repository or download the source code files.
+2. Create a .txt file and write something in there, preferably with a lot of new lines.
+3. Compile the program using the provided main. Comment out a variation you'd like to try.
+
+``` gcc -Wall -Wextra -Werror main.c ```
+
+Have fun!
